@@ -388,60 +388,64 @@ img.block-equation {
       </div>
 
       <div id="leanpub-main" class="kramdown" data-nosnippet>
-        <h2>Graph Based Naive Bayes</h2>
-<p>A subset of Naive Bayes that gets its probability from matrixe / graphs rather than through flat array spaces, in order to place constraints finding a comrpomise between random and iterative. Such a graph can be simple digraphs:</p>
-<pre><code class="language-ruby">matrix = [
-  [[a, a], [a, b], [a, c]],
-  [[b, a], [b, b], [b, c]],
-  [[c, a], [c, b], [c, c]],
-]
-</code></pre>
-<p>Or more complex grid patterns:</p>
-<pre><code class="language-ruby">  matrix = [
-    [[a, a, a, a, a, a],
-     [a, a, a, a, a, b],
-     [a, a, a, a, a, c],
-     [a, a, a, a, a, d],
-     [a, a, a, a, a, e],
-     [a, a, a, a, a, f]],
-    
-    [[b, b, b, b, b, a],
-     [b, b, b, b, b, b],
-     [b, b, b, b, b, c],
-     [b, b, b, b, b, d],
-     [b, b, b, b, b, e],
-     [b, b, b, b, b, f]],
-    
-    [[c, c, c, c, c, a],
-     [c, c, c, c, c, b],
-     [c, c, c, c, c, c],
-     [c, c, c, c, c, d],
-     [c, c, c, c, c, e],
-     [c, c, c, c, c, f]],
-    
-    [[d, d, d, d, d, a],
-     [d, d, d, d, d, b],
-     [d, d, d, d, d, c],
-     [d, d, d, d, d, d],
-     [d, d, d, d, d, e],
-     [d, d, d, d, d, f]],
-    
-    [[e, e, e, e, e, a],
-     [e, e, e, e, e, b],
-     [e, e, e, e, e, c],
-     [e, e, e, e, e, d],
-     [e, e, e, e, e, e],
-     [e, e, e, e, e, f]],
-    
-    [[f, f, f, f, f, a],
-     [f, f, f, f, f, b],
-     [f, f, f, f, f, c],
-     [f, f, f, f, f, d],
-     [f, f, f, f, f, e],
-     [f, f, f, f, f, f]],
-  ]
-</code></pre>
+        <h2>Maximum Global Read, Minimum Write Access</h2>
+<p>When you here people say never use global variable, there is a lot of extra information they're excluding that is a software way to enforce good practice.</p>
+<h3>As A General Rule</h3>
+<p>Any variable defined in a string, integer, float, array, or hash should be defined inside of a constant if defined outside of a module or class. This includes immortal symbols.</p>
+<p>Any variable defined locally should have maximum read access in its own dominion, but no ability to read variables outside its own function, with the exception of global variables.</p>
+<p>Global variables are initialized by constants, but you never modify the constant directly. You can think of this like a bucket and pond, you can never deplete the pond ( in most cases, except on an industrial scale ). These can be used across the program, as you're never directly interacting with the constant. These are &quot;moderate read, moderate write&quot;.</p>
+<p>Here is an example ruby program based on variable access priviledge.</p>
 
+<pre>
+$INTIALIZE_GLOBAL_DAY_COUNT = 0
+
+$TRUE_HP_LEVEL_1 = 15
+$TRUE_HP_LEVEL_2 = 32
+$TRUE_HP_LEVEL_3 = 76
+
+module Game
+  class Environment
+    def self.initialize
+      @current_day = $INITIALIZE_GLOBAL_DAY_COUNT
+      
+      @possible_hp_resets = [$TRUE_HP_LEVEL_1,
+                             $TRUE_HP_LEVEL_2,
+                             $TRUE_HP_LEVEL_3]
+                              
+      @player_level = 0
+    end
+    
+    
+    def self.operation
+    
+      if @current_day == 30
+        @current_day = $INITIALIZE_GLOBAL_DAY_COUNT
+        
+        puts "The lunar calender has reset to zero."
+      else
+        if    @player_level == 0
+          current_hp_reset = @possible_hp_resets[0]
+          
+          @current_day = @current_day + 1
+        elsif @player_level == 1
+          current_hp_reset = @possible_hp_resets[1]
+          
+          @current_day = @current_day + 1
+        elsif @player_level == 2
+          current_hp_reset = @possible_hp_resets[2]
+          
+          @current_day = @current_day + 1
+        else
+          current_hp_reset = @possible_hp_resets[0]
+          
+          @current_day = @current_day + 1
+        end
+      end
+      
+    end
+  end
+end
+<pre>
       </div>
     </main>
   </body>
