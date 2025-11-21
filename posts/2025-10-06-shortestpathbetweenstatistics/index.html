@@ -393,52 +393,6 @@ img.block-equation {
 <p>Such models also need to have the ability to return home, until self-modify its own training data in future versions of itself.</p>
 <h3>Complementary Systems</h3>
 <p>This can be combined with Reinforcement Naive Bayes in order to find the shortest path between statistical paths using the &quot;Three Known Facts&quot; solution.</p>
-<h3>Dynamic Reward Allocation</h3>
-<pre><code class="language-ruby">l1_reasses = &quot;level one reasses&quot;
-l2_reasses = &quot;level two reasses&quot;
-l3_reasses = &quot;level tre reasses&quot;
-l4_reasses = &quot;level fro reasses&quot;
-
-reward_model = [
-  [[l1_reasses, l1_reasses, l1_reasses, l1_reasses],
-   [l1_reasses, l1_reasses, l1_reasses, l2_reasses],
-   [l1_reasses, l1_reasses, l1_reasses, l3_reasses],
-   [l1_reasses, l1_reasses, l1_reasses, l4_reasses]],
-   
-  [[l2_reasses, l2_reasses, l2_reasses, l1_reasses],
-   [l2_reasses, l2_reasses, l2_reasses, l2_reasses],
-   [l2_reasses, l2_reasses, l2_reasses, l3_reasses],
-   [l2_reasses, l2_reasses, l2_reasses, l4_reasses]],
-   
-  [[l3_reasses, l3_reasses, l3_reasses, l1_reasses],
-   [l3_reasses, l3_reasses, l3_reasses, l2_reasses],
-   [l3_reasses, l3_reasses, l3_reasses, l3_reasses],
-   [l3_reasses, l3_reasses, l3_reasses, l4_reasses]],
-   
-  [[l4_reasses, l4_reasses, l4_reasses, l1_reasses],
-   [l4_reasses, l4_reasses, l4_reasses, l2_reasses],
-   [l4_reasses, l4_reasses, l4_reasses, l3_reasses],
-   [l4_reasses, l4_reasses, l4_reasses, l4_reasses]],
-]
-
-row_options = [0, 1, 2, 3]
-col_options = [0, 1, 2, 3]
-arr_options = [0, 1, 2, 3]
-
-cur_row = row_options.sample
-cur_col = col_options.sample
-cur_arr = arr_options.sample
-
-current_reward_structure = reward_model[cur_row][cur_col][cur_arr]
-
-if    current_reward_structure == l1_reasses; reasses
-elsif current_reward_structure == l2_reasses; 2.times do reasses end
-elsif current_reward_structure == l3_reasses; 3.times do reasses end
-elsif current_reward_structure == l4_reasses; 4.times do reasses end
-else
-  reconsider
-end
-</code></pre>
 
       </div>
     </main>
